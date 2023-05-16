@@ -1,0 +1,15 @@
+---
+- name: Call Webhook
+  tasks:
+    - name: Call webhook
+      uri:
+        url: "{{ webhook_url }}"
+        method: POST
+        body_format: json
+        body:
+          message: "{{ webhook_msg }}"
+          data:
+            foo: "bar"
+        headers:
+          Content-Type: "application/json"
+
