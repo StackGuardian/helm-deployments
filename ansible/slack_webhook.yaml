@@ -3,7 +3,6 @@
   tasks:
     - name: Call webhook
       uri:
-        # url: "{{ webhook_url }}"
         url: "{{ lookup('env', 'WEBHOOK_URL') }}"
         method: POST
         body_format: json
