@@ -1,0 +1,13 @@
+---
+- name: Install Python
+  become: true
+
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    - name: Install Python
+      apt:
+        name: python
+        state: present
