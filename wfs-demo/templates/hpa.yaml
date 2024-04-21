@@ -1,6 +1,9 @@
 {{- if .Values.autoscaling.enabled }}
 apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
+env:
+  - name: CLUSTER_NAME
+    value: {{ .Values.clusterName }}
 metadata:
   name: {{ include "wfs-demo.fullname" . }}
   labels:
