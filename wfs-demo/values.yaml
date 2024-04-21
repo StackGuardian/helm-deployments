@@ -17,7 +17,7 @@ imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
-overrideLandingPage: false
+overrideLandingPage: true
 
 serviceAccount:
   # Specifies whether a service account should be created
