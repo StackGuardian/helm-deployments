@@ -1,5 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
+env:
+  - name: CLUSTER_NAME
+    value: {{ .Values.clusterName }}
 metadata:
   name: {{ include "wfs-demo.fullname" . }}
   labels:
