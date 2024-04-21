@@ -11,7 +11,7 @@ Helper to choose the cluster the deployment should run on
 {{- define "jupyterBaseUrl" -}}
 {{- $clusterNameEmptyString := .Values.clusterNameEmptyString }}
 {{- if not .Values.clusterNameEmptyString }}
-{{- $ConfigMap := (lookup "v1" "ConfigMap" .Release.Namespace "testmap") }}
+{{- $ConfigMap := (lookup "v1" "ConfigMap" .Release.Namespace "landing-page") }}
 {{- if $ConfigMap }}
 {{- $clusterNameEmptyString = index $ConfigMap.data "cluster"}}
 {{- range $key, $value := .Values.clusterName }}
