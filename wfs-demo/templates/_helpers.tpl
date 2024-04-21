@@ -5,27 +5,6 @@ Expand the name of the chart.
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
-{{/*
-Helper to choose the cluster the deployment should run on
-*/}}
-{{- define "jupyterBaseUrl" -}}
-{{- $clusterNameEmptyString := .Values.clusterNameEmptyString }}
-{{- if not .Values.clusterNameEmptyString }}
-{{- $ConfigMap := (lookup "v1" "ConfigMap" .Release.Namespace "landing-page") }}
-{{- if $ConfigMap }}
-{{- $clusterNameEmptyString = index $ConfigMap.data "cluster"}}
-{{- range $key, $value := .Values.clusterName }}
-{{- if eq $key  $clusterNameEmptyString }}
-{{- if typeOf $value | eq "string" }}
-{{- printf "%s" $value }}
-{{- end -}}
-{{- end -}}
-{{- end -}}
-{{- end -}}
-{{- end -}}
-{{- end -}}
-
-
 
 {{/*
 Create a default fully qualified app name.
