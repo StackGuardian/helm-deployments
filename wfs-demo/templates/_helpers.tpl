@@ -6,6 +6,28 @@ Expand the name of the chart.
 {{- end }}
 
 {{/*
+Helper to choose the cluster the deployment should run on
+*/}}
+{{- define "jupyterBaseUrl" -}}
+{{- $clusterNameEmptyString := .Values.clusterNameEmptyString }}
+{{- if not .Values.clusterNameEmptyString }}
+{{- $ConfigMap := (lookup "v1" "ConfigMap" .Release.Namespace "testmap") }}
+{{- if $ConfigMap }}
+{{- $clusterNameEmptyString = index $ConfigMap.data "cluster"}}
+{{- range $key, $value := .Values.clusterName }}
+{{- if eq $key  $clusterNameEmptyString }}
+{{- if typeOf $value | eq "string" }}
+{{- printf "%s" $value }}
+{{- end -}}
+{{- end -}}
+{{- end -}}
+{{- end -}}
+{{- end -}}
+{{- end -}}
+
+
+
+{{/*
 Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
