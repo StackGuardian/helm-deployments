@@ -4,8 +4,7 @@
 
 replicaCount: 1
 
-cluster:
-  cluster1: eks-new
+clusterName: eks-new
 
 image:
   repository: nginx
