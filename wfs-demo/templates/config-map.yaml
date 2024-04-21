@@ -5,6 +5,7 @@ data:
 kind: ConfigMap
 metadata:
   name: landing-page
+  namespace: test
 data:
   index.html: |
     <html>
