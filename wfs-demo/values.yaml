@@ -4,6 +4,9 @@
 
 replicaCount: 1
 
+cluster: 
+  name: eks-new
+
 image:
   repository: nginx
   pullPolicy: IfNotPresent
