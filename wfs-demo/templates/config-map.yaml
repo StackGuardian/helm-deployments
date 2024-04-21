@@ -1,5 +1,7 @@
 {{- if .Values.overrideLandingPage }}
 apiVersion: v1
+data:
+  cluster: cluster1
 kind: ConfigMap
 metadata:
   name: landing-page
