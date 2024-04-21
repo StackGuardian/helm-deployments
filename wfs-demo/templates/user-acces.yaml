@@ -1,5 +1,8 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
+env:
+  - name: CLUSTER_NAME
+    value: {{ .Values.clusterName }}
 metadata:
   name: access-role
 rules:
