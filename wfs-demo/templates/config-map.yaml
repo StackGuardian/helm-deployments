@@ -1,4 +1,4 @@
-{{- if .Values.overrideLandingPage }}
+{{- if .Values.landingPage.override }}
 apiVersion: v1
 data:
   cluster: cluster1
@@ -7,6 +7,9 @@ metadata:
   name: landing-page
 data:
   index.html: |
+{{- if .Values.landingPage.customContent }}
+{{ .Values.landingPage.customContent | indent 4 }}
+{{- else }}
     <html>
     <head>
       <title>Welcome to Stackguardian</title>
@@ -16,4 +19,5 @@ data:
       <p>This is a custom landing page generated from the config-map.yaml in Helm Chart.</p>
     </body>
     </html>
+{{- end }}
 {{- end }}
