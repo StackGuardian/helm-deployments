@@ -27,7 +27,7 @@ spec:
       serviceAccountName: {{ include "wfs-demo.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
-      {{- if .Values.overrideLandingPage }}
+      {{- if .Values.landingPage.override }}
       volumes:
         - name: landing-page
           configMap:
@@ -43,15 +43,15 @@ spec:
             - name: http
               containerPort: {{ .Values.service.port }}
               protocol: TCP
+          {{- with .Values.livenessProbe }}
           livenessProbe:
-            httpGet:
-              path: /
-              port: http
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.readinessProbe }}
           readinessProbe:
-            httpGet:
-              path: /
-              port: http
-          {{- if .Values.overrideLandingPage }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- if .Values.landingPage.override }}
           volumeMounts:
             - name: landing-page
               mountPath: /usr/share/nginx/html

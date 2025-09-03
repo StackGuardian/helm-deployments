@@ -1,4 +1,3 @@
-{{- if .Values.landingPage.override }}
 apiVersion: v1
 data:
   cluster: cluster1
@@ -6,6 +5,17 @@ kind: ConfigMap
 metadata:
   name: landing-page
 data:
+  customConfig: |
+{{- if .Values.customConfig }}
+{{ .Values.customConfig | indent 4 }}
+{{- else }}
+    some custom multiline config
+    config:
+      object:
+        - array1
+        - array2
+{{- end }}
+{{- if .Values.landingPage.override }}
   index.html: |
 {{- if .Values.landingPage.customContent }}
 {{ .Values.landingPage.customContent | indent 4 }}
