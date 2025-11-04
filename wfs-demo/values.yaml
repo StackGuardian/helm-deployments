@@ -19,26 +19,27 @@ landingPage:
   override: false
   # Set customContent to override the default index.html
   # Leave empty or set to null to use the default content
-  customContent: |
-    <html>
-    <head>
-      <title>Custom Stackguardian Page</title>
-      <style>
-        body {
-          font-family: Arial, sans-serif;
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-          color: white;
-          text-align: center;
-          padding: 50px;
-        }
-      </style>
-    </head>
-    <body>
-      <h1>🚀 Custom Landing Page</h1>
-      <p>This content is now configurable via values.yaml!</p>
-      <p>You can include multiple lines, HTML, CSS, and JavaScript.</p>
-    </body>
-    </html>
+  content:
+    index.html: |
+      <html>
+      <head>
+        <title>Custom Stackguardian Page</title>
+        <style>
+          body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 50px;
+          }
+        </style>
+      </head>
+      <body>
+        <h1>🚀 Custom Landing Page</h1>
+        <p>This content is now configurable via values.yaml!</p>
+        <p>You can include multiple lines, HTML, CSS, and JavaScript.</p>
+      </body>
+      </html>
 
 serviceAccount:
   # Specifies whether a service account should be created
