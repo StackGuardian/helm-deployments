@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wfs-demo
+  labels:
+    app: wfs-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wfs-demo
+  template:
+    metadata:
+      labels:
+        app: wfs-demo
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.16.0
+        ports:
+        - name: http
+          containerPort: 80
+          protocol: TCP
+        livenessProbe:
+          httpGet:
+            path: /
+            port: http
+        readinessProbe:
+          httpGet:
+            path: /
+            port: http
